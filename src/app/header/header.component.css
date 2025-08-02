@@ -1,0 +1,50 @@
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.mat-toolbar {
+  background-color: #48c845;
+  color: rgb(107, 4, 112);
+}
+
+/* Icon buttons styling */
+.example-icon {
+  font-size: 28px;
+  color: rgb(172, 44, 44);
+  transition: color 0.3s ease;
+  cursor: pointer;
+
+  padding: 8px;                 /* Padding around icons */
+  background-color: #48c845;    /* Green background matching toolbar */
+  border: 2px solid #48c845;    /* Green border */
+  border-radius: 6px;           /* Rounded corners */
+  margin: 4px;                  /* Margin around icons */
+  box-sizing: content-box;      /* Ensure padding/border don't reduce icon size */
+}
+
+/* Hover state: icons turn black */
+.example-icon:hover {
+  color: black;
+}
+
+/* Specific margin adjustment for favorite icon */
+.favorite-icon {
+  margin-right: 8px;
+}
+
+/* Button adjustments to remove default styling */
+.mat-toolbar button.mat-icon-button,
+.mat-toolbar button.mat-icon-button:hover,
+.mat-toolbar button.mat-icon-button:focus {
+  background: transparent !important;
+  box-shadow: none !important;
+  outline: none !important;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Make sure mat-icon inside button aligns properly */
+.mat-toolbar button.mat-icon-button > .mat-icon {
+  display: inline-block;
+}
