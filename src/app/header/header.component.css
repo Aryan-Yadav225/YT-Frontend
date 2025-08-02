@@ -7,72 +7,44 @@
   color: rgb(107, 4, 112);
 }
 
-/* Icons: larger and colored as you desire */
-.example-icon {
-  font-size: 28px;
-  color: rgb(96, 4, 84);
-  transition: color 0.3s ease;
-  cursor: pointer;
-}
-
-
-.favorite-icon {
-  margin-right: 8px;
-}
-
-/* Center icon buttons in the toolbar (optional, for safety) */
-.mat-toolbar button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-
-/* If you want to further reduce padding/margin: */
-.mat-toolbar button.mat-icon-button {
-  padding: 0 6px; /* Default is fine, but tweak if you want even less space */
-}
-
-/* Add green padding background */
+/* Icon buttons styling */
 .example-icon {
   font-size: 28px;
   color: rgb(172, 44, 44);
   transition: color 0.3s ease;
   cursor: pointer;
-  
-  padding: 8px;                 /* Add padding around icons */
-  background-color: #48c845;    /* Green background (same as toolbar) */
-  border: 2px solid #48c845;    /* Green border same as bg */
-  border-radius: 6px;           /* Rounded corners for nicer look */
-  margin: 4px;                  /* Margin all around, also green capable visually */
-  box-sizing: content-box;      /* Padding and border do not reduce icon size */
+
+  padding: 8px;                 /* Padding around icons */
+  background-color: #48c845;    /* Green background matching toolbar */
+  border: 2px solid #48c845;    /* Green border */
+  border-radius: 6px;           /* Rounded corners */
+  margin: 4px;                  /* Margin around icons */
+  box-sizing: content-box;      /* Ensure padding/border don't reduce icon size */
 }
 
-/* Add green margin specifically for favorite-icon to keep spacing */
+/* Hover state: icons turn black */
+.example-icon:hover {
+  color: black;
+}
+
+/* Specific margin adjustment for favorite icon */
 .favorite-icon {
   margin-right: 8px;
 }
 
-/* Remove any button backgrounds but keep flex centering */
+/* Button adjustments to remove default styling */
 .mat-toolbar button.mat-icon-button,
 .mat-toolbar button.mat-icon-button:hover,
 .mat-toolbar button.mat-icon-button:focus {
   background: transparent !important;
   box-shadow: none !important;
   outline: none !important;
-  border: none; /* Remove default button border */
-  padding: 0;   /* Reset padding on button itself */
-  margin: 0;    /* Reset margin on button itself */
-}
-
-/* Make sure the button wraps nicely around the icon and its padding and border */
-.mat-toolbar button.mat-icon-button > .mat-icon {
-  display: inline-block;
-}
-
-/* Align buttons with icon styles and padding */
-.mat-toolbar button.mat-icon-button {
+  border: none;
   padding: 0;
   margin: 0;
-  border: none;
+}
+
+/* Make sure mat-icon inside button aligns properly */
+.mat-toolbar button.mat-icon-button > .mat-icon {
+  display: inline-block;
 }
