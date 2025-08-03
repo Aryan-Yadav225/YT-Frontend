@@ -1,1 +1,70 @@
-<p>save-video-details works!</p>
+<div class="flex-container">
+  <!-- Left Sidebar -->
+  <div class="sidebar">Hi</div>
+
+  <!-- Main Form Section -->
+  <div class="main-form">
+    <h2 class="form-title">Add Video Metadata</h2>
+
+    <form [formGroup]="saveVideoDetailsForm" class="form-fields">
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Title</mat-label>
+        <input matInput [formControl]="title" required />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Description</mat-label>
+        <input matInput [formControl]="description" required />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Video Status</mat-label>
+        <select [formControl]="videoStatus" matNativeControl required>
+          <option value="public">PUBLIC</option>
+          <option value="private">PRIVATE</option>
+        </select>
+      </mat-form-field>
+
+      <mat-form-field class="example-chip-list">
+        <mat-label>Tags</mat-label>
+        <mat-chip-grid #chipGrid aria-label="Enter tags">
+          <mat-chip-row
+            *ngFor="let tag of tags; trackBy: trackTag"
+            (removed)="remove(tag)"
+            [editable]="true"
+            [aria-description]="'press enter to edit ' + tag"
+          >
+            <button matChipEdit [attr.aria-label]="'edit ' + tag">
+              <mat-icon>edit</mat-icon>
+            </button>
+            {{ tag }}
+            <button matChipRemove [attr.aria-label]="'remove ' + tag">
+              <mat-icon>cancel</mat-icon>
+            </button>
+          </mat-chip-row>
+
+          <input
+            placeholder="New tag..."
+            [matChipInputFor]="chipGrid"
+            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+            [matChipInputAddOnBlur]="addOnBlur"
+            (matChipInputTokenEnd)="add($event)"
+          />
+        </mat-chip-grid>
+      </mat-form-field>
+
+      <div>
+        <button mat-raised-button color="primary" type="submit">Save</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Video Preview Section -->
+  <div class="video-preview">
+    <h3>Video Player</h3>
+    <div class="player-placeholder">Video Player Placeholder</div>
+  </div>
+
+  <!-- Right Sidebar -->
+  <div class="sidebar">Hi</div>
+</div>
