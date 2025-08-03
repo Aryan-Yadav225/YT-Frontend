@@ -1,6 +1,6 @@
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -8,17 +8,18 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
-import {
-  MatChipEditedEvent,
-  MatChipGrid,
-  MatChipInputEvent,
-  MatChipRow,
-  MatChipsModule,
-} from '@angular/material/chips';
+import { MatChipInputEvent, MatChipsModule } from '@angular/material/chips';
 import { MatOptionModule } from '@angular/material/core';
 import { MatFormFieldModule, MatLabel } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
+import { VgCoreModule } from '@videogular/ngx-videogular/core';
+import { VgControlsModule } from '@videogular/ngx-videogular/controls';
+import { VgOverlayPlayModule } from '@videogular/ngx-videogular/overlay-play';
+import { VgBufferingModule } from '@videogular/ngx-videogular/buffering';
+import { CommonModule } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
+import { VideoService } from '../video.service';
 
 @Component({
   selector: 'app-save-video-details',
@@ -32,6 +33,11 @@ import { MatSelectModule } from '@angular/material/select';
     ReactiveFormsModule,
     MatIconModule,
     MatChipsModule,
+    CommonModule,
+    VgCoreModule,
+    VgControlsModule,
+    VgOverlayPlayModule,
+    VgBufferingModule,
   ],
   templateUrl: './save-video-details.component.html',
   styleUrl: './save-video-details.component.css',
@@ -47,8 +53,13 @@ export class SaveVideoDetailsComponent {
   readonly announcer = inject(LiveAnnouncer);
 
   tags: string[] = [];
+  selectedFile!: File;
+  selectedFileName: string = '';
+  fileSelected: boolean = false;
+  videoId = '';
 
-  constructor() {
+  constructor( private activatedRoute: ActivatedRoute, private videoService: VideoService) {
+    this.videoId = this.activatedRoute.snapshot.params['videoId'];
     this.saveVideoDetailsForm = new FormGroup({
       title: this.title,
       description: this.description,
@@ -72,7 +83,22 @@ export class SaveVideoDetailsComponent {
       this.tags.splice(index, 1);
     }
   }
+
+  onFileSelected($event: Event) {
+    // @ts-ignore
+    this.selectedFile = event?.target.files[0];
+    this.selectedFileName = this.selectedFile.name;
+    this.fileSelected = true;
+  }
+
+  onUpload() {
+    this.videoService.uploadThumbnail(this.selectedFile, this.videoId).subscribe((data)=>{
+      console.log("ThumbnailURL", data)
+      // show an upload success notification.
+        // this.matSnackBar.open("Thumbnail Upload Successful", "OK");
+    })
+  }
   trackTag(index: number, item: string): string {
-  return item;
-}
+    return item;
+  }
 }
