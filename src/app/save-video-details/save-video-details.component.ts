@@ -21,6 +21,7 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { VideoService } from '../video.service';
 import {MatSnackBar} from "@angular/material/snack-bar";
+import { VideoPlayerComponent } from "../video-player/video-player.component";
 
 @Component({
   selector: 'app-save-video-details',
@@ -39,7 +40,8 @@ import {MatSnackBar} from "@angular/material/snack-bar";
     VgControlsModule,
     VgOverlayPlayModule,
     VgBufferingModule,
-  ],
+    VideoPlayerComponent
+],
   templateUrl: './save-video-details.component.html',
   styleUrl: './save-video-details.component.css',
 })
