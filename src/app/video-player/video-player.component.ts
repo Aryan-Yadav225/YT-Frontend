@@ -40,4 +40,7 @@ export class VideoPlayerComponent implements OnChanges {
       });
     }
   }
+  onPlayerReady(api: any) {
+  api.play(); // this ensures autoplay happens manually as a fallback
+}
 }
