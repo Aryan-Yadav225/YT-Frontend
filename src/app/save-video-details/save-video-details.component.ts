@@ -20,6 +20,7 @@ import { VgBufferingModule } from '@videogular/ngx-videogular/buffering';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { VideoService } from '../video.service';
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-save-video-details',
@@ -58,7 +59,7 @@ export class SaveVideoDetailsComponent {
   fileSelected: boolean = false;
   videoId = '';
 
-  constructor( private activatedRoute: ActivatedRoute, private videoService: VideoService) {
+  constructor( private activatedRoute: ActivatedRoute, private videoService: VideoService, private matSnackBar: MatSnackBar) {
     this.videoId = this.activatedRoute.snapshot.params['videoId'];
     this.saveVideoDetailsForm = new FormGroup({
       title: this.title,
@@ -95,7 +96,7 @@ export class SaveVideoDetailsComponent {
     this.videoService.uploadThumbnail(this.selectedFile, this.videoId).subscribe((data)=>{
       console.log("ThumbnailURL", data)
       // show an upload success notification.
-        // this.matSnackBar.open("Thumbnail Upload Successful", "OK");
+        this.matSnackBar.open("Thumbnail Upload Successful", "OK");
     })
   }
   trackTag(index: number, item: string): string {
