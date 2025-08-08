@@ -8,7 +8,7 @@ import { VideoDto } from './VideoDTO';
   providedIn: 'root',
 })
 export class VideoService {
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) { }
 
   uploadVideo(fileEntry: File): Observable<UploadVideoResponse> {
     // Create a FormData object to hold the file
@@ -33,4 +33,10 @@ export class VideoService {
   getVideoDetails(videoId: string): Observable<VideoDto> {
     return this.httpClient.get<VideoDto>(`http://localhost:8080/api/videos/${videoId}`);
   }
+
+  saveVideo(videoMetaData: VideoDto): Observable<VideoDto> {
+    // HTTP PUT call to save video details
+    return this.httpClient.put<VideoDto>('http://localhost:8080/api/videos', videoMetaData);
+  }
+  
 }
