@@ -22,6 +22,7 @@ import { ActivatedRoute } from '@angular/router';
 import { VideoService } from '../video.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { VideoPlayerComponent } from '../video-player/video-player.component';
+import { VideoDto } from '../VideoDTO';
 
 @Component({
   selector: 'app-save-video-details',
@@ -113,6 +114,28 @@ export class SaveVideoDetailsComponent {
         this.matSnackBar.open('Thumbnail Upload Successful', 'OK');
       });
   }
+  saveVideos() {
+    const videoMetaData: VideoDto = {
+      id: this.videoId,
+      title: this.title.value,
+      description: this.description.value,
+      videoStatus: this.videoStatus.value ? this.videoStatus.value.toUpperCase() : '',
+      tags: this.tags,
+      videoUrl: this.videoUrl,
+      thumbnailUrl: this.thumbnailUrl,
+      likeCount: 0,
+      dislikeCount: 0,
+      viewCount: 0
+    };
+
+    this.videoService.saveVideo(videoMetaData).subscribe((data) => {
+      console.log('Video Metadata Saved', data);
+      this.matSnackBar.open('Video Details Saved Successfully', 'OK', {
+        duration: 3000,
+      });
+    });
+  }
+
   trackTag(index: number, item: string): string {
     return item;
   }
