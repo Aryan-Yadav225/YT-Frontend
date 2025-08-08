@@ -102,7 +102,7 @@
   <!-- Video Preview Section -->
   <div class="video-preview">
     <h3>Video Player</h3>
-    <div class="player-placeholder">Video Player Placeholder</div>
+    <app-video-player *ngIf="videoUrl" [videoURL]="videoUrl"></app-video-player>
   </div>
 
   <!-- Right Sidebar -->

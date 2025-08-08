@@ -20,7 +20,8 @@ import { VgBufferingModule } from '@videogular/ngx-videogular/buffering';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { VideoService } from '../video.service';
-import {MatSnackBar} from "@angular/material/snack-bar";
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { VideoPlayerComponent } from '../video-player/video-player.component';
 
 @Component({
   selector: 'app-save-video-details',
@@ -39,6 +40,7 @@ import {MatSnackBar} from "@angular/material/snack-bar";
     VgControlsModule,
     VgOverlayPlayModule,
     VgBufferingModule,
+    VideoPlayerComponent,
   ],
   templateUrl: './save-video-details.component.html',
   styleUrl: './save-video-details.component.css',
@@ -58,9 +60,19 @@ export class SaveVideoDetailsComponent {
   selectedFileName: string = '';
   fileSelected: boolean = false;
   videoId = '';
+  videoUrl!: string;
+  thumbnailUrl!: string;
 
-  constructor( private activatedRoute: ActivatedRoute, private videoService: VideoService, private matSnackBar: MatSnackBar) {
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private videoService: VideoService,
+    private matSnackBar: MatSnackBar
+  ) {
     this.videoId = this.activatedRoute.snapshot.params['videoId'];
+    this.videoService.getVideoDetails(this.videoId).subscribe((data) => {
+      this.videoUrl = data.videoUrl;
+      this.thumbnailUrl = data.thumbnailUrl;
+    });
     this.saveVideoDetailsForm = new FormGroup({
       title: this.title,
       description: this.description,
@@ -93,11 +105,13 @@ export class SaveVideoDetailsComponent {
   }
 
   onUpload() {
-    this.videoService.uploadThumbnail(this.selectedFile, this.videoId).subscribe((data)=>{
-      console.log("ThumbnailURL", data)
-      // show an upload success notification.
-        this.matSnackBar.open("Thumbnail Upload Successful", "OK");
-    })
+    this.videoService
+      .uploadThumbnail(this.selectedFile, this.videoId)
+      .subscribe((data) => {
+        console.log('ThumbnailURL', data);
+        // show an upload success notification.
+        this.matSnackBar.open('Thumbnail Upload Successful', 'OK');
+      });
   }
   trackTag(index: number, item: string): string {
     return item;
