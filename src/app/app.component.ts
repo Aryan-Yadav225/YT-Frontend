@@ -9,6 +9,19 @@ import { LoginResponse, OidcSecurityService } from 'angular-auth-oidc-client';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent {
-  title = 'YT-Frontend';
+export class AppComponent implements OnInit {
+  private readonly oidcSecurityService = inject(OidcSecurityService);
+
+  ngOnInit() {
+    this.oidcSecurityService.checkAuth().subscribe((loginResponse: LoginResponse) => {
+      const { isAuthenticated, userData, accessToken, idToken, configId } = loginResponse;
+      console.log('isAuthenticated:', isAuthenticated);
+      console.log('userData:', userData); 
+      console.log('accessToken:', accessToken);
+      console.log('idToken:', idToken);
+      console.log('configId:', configId);
+      /*...*/
+    });
+  }
 }
+
