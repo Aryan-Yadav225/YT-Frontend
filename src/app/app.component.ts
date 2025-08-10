@@ -16,10 +16,10 @@ export class AppComponent implements OnInit {
     this.oidcSecurityService.checkAuth().subscribe((loginResponse: LoginResponse) => {
       const { isAuthenticated, userData, accessToken, idToken, configId } = loginResponse;
       console.log('isAuthenticated:', isAuthenticated);
-      console.log('userData:', userData); 
+      // console.log('userData:', userData); 
       console.log('accessToken:', accessToken);
-      console.log('idToken:', idToken);
-      console.log('configId:', configId);
+      // console.log('idToken:', idToken);
+      // console.log('configId:', configId);
       /*...*/
     });
   }

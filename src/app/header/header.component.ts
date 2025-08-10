@@ -20,6 +20,7 @@ export class HeaderComponent {
   ngOnInit() {
     this.oidcSecurityService.isAuthenticated$.subscribe((authResult) => {
       this.isAuthenticated = authResult.isAuthenticated;
+      // this.isAuthenticated = false; // Assuming authResult is a boolean
     });
   }
 
