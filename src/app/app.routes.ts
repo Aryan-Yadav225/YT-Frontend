@@ -16,4 +16,11 @@ export const routes: Routes = [
         (m) => m.SaveVideoDetailsComponent
       ),
   },
+  {
+    path: 'videoDetails/:videoId',
+    loadComponent: () =>
+      import('./video-detail/video-detail.component').then(
+        (m) => m.VideoDetailComponent
+      ),
+  },
 ];
