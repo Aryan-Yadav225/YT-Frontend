@@ -1,0 +1,16 @@
+<div class="video-container">
+  <!-- Video Area -->
+  <div class="video-detail">
+    <div class="video-column">
+      <app-video-player *ngIf="videoAvailable" [videoURL]="videoUrl"></app-video-player>
+    </div>
+  </div>
+
+  <!-- Spacer -->
+  <div class="spacer"></div>
+
+  <!-- Suggestion Bar -->
+  <div class="suggestion-bar">
+    <!-- suggestion content goes here -->
+  </div>
+</div>
