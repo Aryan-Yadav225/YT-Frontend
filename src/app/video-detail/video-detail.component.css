@@ -1,25 +1,183 @@
-.video-container {
-  display: flex;              /* same as fxLayout="row" */
-  flex-direction: row;
-  gap: 8px;                   /* replaces fxLayoutGap="8px" */
+/* Layout */
+.page {
+  /* 65% main | 5% spacer | 30% sidebar */
+  display: grid;
+  grid-template-columns: 65% 5% 30%;
+  column-gap: 16px;
+  align-items: start;
 }
 
-.video-detail {
-  flex: 0 0 65%;              /* same as fxFlex="65%" */
-  margin-top: 50px;
-  margin-left: 50px;
-}
-
-.video-column {
-  display: flex;              /* same as fxLayout="column" */
+/* Stack helper to replace fxLayout="column" fxLayoutGap="8px" */
+.stack-8 {
+  display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
+/* Sections */
+.video-detail {
+  margin-top: 24px;
+}
+
 .spacer {
-  flex: 0 0 5%;               /* same as fxFlex="5%" */
+  min-height: 1px;
 }
 
 .suggestion-bar {
-  flex: 0 0 30%;              /* same as fxFlex="30%" */
+  position: sticky;
+  top: 64px; /* keeps suggestions visible while scrolling */
+  align-self: start;
+}
+
+/* Title & metadata */
+.video-title {
+  margin: 8px 0 4px;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.meta-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* replaces fxLayoutAlign="end" for right box */
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.meta-left {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+.dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: currentColor;
+  display: inline-block;
+  opacity: 0.6;
+}
+
+.meta-right {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Like / Dislike buttons */
+.thumb-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 9999px;
+  padding: 2px 8px;
+  transition: background 0.2s ease, transform 0.05s ease-in-out;
+}
+
+.thumb-btn:hover {
+  background: rgba(0, 0, 0, 0.06);
+}
+
+.thumb-btn:active {
+  transform: translateY(1px);
+}
+
+.thumb-btn .count {
+  font-size: 13px;
+  opacity: 0.9;
+}
+
+/* Channel header area */
+.channel-header {
+  display: grid;
+  grid-template-columns: 1fr auto; /* text on left, buttons on right */
+  align-items: center;
+  row-gap: 2px;
+  column-gap: 12px;
+}
+
+.channel-title,
+.subtitles {
+  margin: 0;
+}
+
+.channel-title {
+  grid-column: 1 / 2;
+}
+
+.subtitles {
+  grid-column: 1 / 2;
+  font-size: 13px;
+  opacity: 0.85;
+}
+
+.subscribe-actions {
+  grid-column: 2 / 3;
+  display: inline-flex;
+  gap: 8px;
+}
+
+/* Subscribe buttons */
+.subscribe-button,
+.subscribe-button-clicked {
+  border-radius: 9999px;
+  padding: 0 16px;
+  height: 36px;
+  font-weight: 600;
+  letter-spacing: 0.25px;
+}
+
+/* Description & tags */
+.video-description {
+  white-space: pre-wrap;
+  margin: 8px 0;
+  line-height: 1.5;
+}
+
+.tags {
+  display: block;
+  padding: 4px 0;
+}
+
+/* Make the video player responsive */
+app-video-player,
+app-video-player > * {
+  width: 100%;
+  display: block;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .page {
+    grid-template-columns: 1fr; /* stack */
+    row-gap: 20px;
+  }
+
+  .suggestion-bar {
+    position: static;
+  }
+}
+
+@media (max-width: 600px) {
+  .meta-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .video-title {
+    font-size: 20px;
+  }
+}
+
+/* Optional: Light touch to align with Angular Material’s density */
+:host ::ng-deep mat-divider {
+  margin: 8px 0;
+}
+
+:host ::ng-deep mat-chip-list {
+  gap: 6px;
 }
