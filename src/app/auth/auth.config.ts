@@ -5,7 +5,7 @@ export const authConfig: PassedInitialConfig = {
     authority: 'https://dev-ihlldbpqyyl8j7wp.us.auth0.com',
     redirectUrl: window.location.origin,
     clientId: '04flLLXF0re7Z1lDqHuqDCEEUyj5qSCA',
-    scope: 'openid profile offline_access',
+    scope: 'openid profile offline_access email',
     responseType: 'code',
     silentRenew: true,
     useRefreshToken: true,

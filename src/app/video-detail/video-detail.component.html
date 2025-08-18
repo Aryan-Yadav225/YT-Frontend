@@ -1,16 +1,79 @@
-<div class="video-container">
-  <!-- Video Area -->
-  <div class="video-detail">
-    <div class="video-column">
+<div class="page">
+  <!-- Main content -->
+  <section class="video-detail">
+    <div class="stack-8">
       <app-video-player *ngIf="videoAvailable" [videoURL]="videoUrl"></app-video-player>
+
+      <h1 class="video-title mat-title">{{ videoTitle }}</h1>
+
+      <div class="meta-bar">
+        <div class="meta-left">
+          <span class="view-count">{{ viewCount }}</span>
+          <span class="dot" aria-hidden="true"></span>
+          <time class="video-upload-date" datetime="2021-04-13">Apr 13, 2021</time>
+        </div>
+
+        <div class="meta-right">
+          <button mat-icon-button class="thumb-btn" (click)="likeVideo()" aria-label="Like">
+            <mat-icon>thumb_up_off_alt</mat-icon>
+            <span class="count">{{ likeCount }}</span>
+          </button>
+          <button mat-icon-button class="thumb-btn" (click)="disLikeVideo()" aria-label="Dislike">
+            <mat-icon>thumb_down_off_alt</mat-icon>
+            <span class="count">{{ dislikeCount }}</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- <mat-divider></mat-divider> -->
+
+      <!-- <mat-card-header class="channel-header">
+        <mat-card-title class="channel-title">Programming Techie</mat-card-title>
+        <mat-card-subtitle class="subtitles">4.2K Subscribers</mat-card-subtitle>
+
+        <div class="subscribe-actions">
+          <button
+            *ngIf="showSubscribeButton"
+            class="subscribe-button"
+            mat-raised-button
+            color="warn"
+            (click)="subscribeToUser()"
+          >
+            SUBSCRIBE
+          </button>
+
+          <button
+            *ngIf="showUnSubscribeButton"
+            class="subscribe-button-clicked"
+            mat-raised-button
+            color="accent"
+            (click)="unSubscribeToUser()"
+          >
+            UNSUBSCRIBE
+          </button>
+        </div>
+      </mat-card-header> -->
+
+      <p class="video-description">{{ videoDescription }}</p>
+<!-- 
+      <mat-divider></mat-divider>
+
+      <mat-chip-list class="tags">
+        <mat-chip>Spring Boot</mat-chip>
+        <mat-chip>Angular</mat-chip>
+      </mat-chip-list>
+
+      <mat-divider></mat-divider>
+
+      <app-comments *ngIf="videoAvailable" [videoId]="videoId"></app-comments> -->
     </div>
-  </div>
+  </section>
 
-  <!-- Spacer -->
-  <div class="spacer"></div>
+  <!-- Spacer (kept to mirror original grid) -->
+  <div class="spacer" aria-hidden="true"></div>
 
-  <!-- Suggestion Bar -->
-  <div class="suggestion-bar">
-    <!-- suggestion content goes here -->
-  </div>
+  <!-- Suggestions -->
+  <aside class="suggestion-bar">
+    <!-- suggestion content -->
+  </aside>
 </div>
