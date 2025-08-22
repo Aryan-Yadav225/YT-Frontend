@@ -1,25 +1,20 @@
-<mat-sidenav [mode]="'side'" opened>
-
-    <mat-nav-list role="list">
-        <mat-list-item role="listitem" routerLink="/featured">
-            <mat-icon mat-list-icon>home</mat-icon>
-            <p matLine>Home</p>
-        </mat-list-item>
-
-        <mat-list-item role="listitem" routerLink="/subscriptions">
-            <mat-icon mat-list-icon>subscriptions</mat-icon>
-            <p matLine>Subscriptions</p>
-        </mat-list-item>
-
-        <mat-list-item role="listitem" routerLink="/history">
-            <mat-icon mat-list-icon>history</mat-icon>
-            <p matLine>History</p>
-        </mat-list-item>
-
-        <mat-list-item role="listitem" routerLink="/liked-videos">
-            <mat-icon mat-list-icon>thumb_up</mat-icon>
-            <p matLine>Liked Videos</p>
-        </mat-list-item>
-    </mat-nav-list>
-
-</mat-sidenav>
+<div class="custom-sidenav">
+  <ul class="custom-nav-list">
+    <li class="custom-list-item" routerLink="/featured">
+      <span class="custom-icon material-icons">home</span>
+      <span class="custom-text">Home</span>
+    </li>
+    <li class="custom-list-item" routerLink="/subscriptions">
+      <span class="custom-icon material-icons">subscriptions</span>
+      <span class="custom-text">Subscriptions</span>
+    </li>
+    <li class="custom-list-item" routerLink="/history">
+      <span class="custom-icon material-icons">history</span>
+      <span class="custom-text">History</span>
+    </li>
+    <li class="custom-list-item" routerLink="/liked-videos">
+      <span class="custom-icon material-icons">thumb_up</span>
+      <span class="custom-text">Liked Videos</span>
+    </li>
+  </ul>
+</div>

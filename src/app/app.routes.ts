@@ -5,6 +5,36 @@ export const routes: Routes = [
     path: '',
     loadComponent: () =>
       import('./home/home.component').then((m) => m.HomeComponent),
+    children: [
+      {
+        path: 'featured',
+        loadComponent: () =>
+          import('./featured/featured.component').then(
+            (m) => m.FeaturedComponent
+          ),
+      },
+      {
+        path: 'subscriptions',
+        loadComponent: () =>
+          import('./subscription/subscription.component').then(
+            (m) => m.SubscriptionComponent
+          ),
+      },
+      {
+        path: 'history',
+        loadComponent: () =>
+          import('./history/history.component').then(
+            (m) => m.HistoryComponent
+          ),
+      },
+      {
+        path: 'liked-videos',
+        loadComponent: () =>
+          import('./liked-videos/liked-videos.component').then(
+            (m) => m.LikedVideosComponent
+          ),
+      },
+    ],
   },
   {
     path: 'uploadVideo',
