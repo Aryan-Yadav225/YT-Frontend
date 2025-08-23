@@ -8,6 +8,9 @@ import { VideoDto } from './VideoDTO';
   providedIn: 'root',
 })
 export class VideoService {
+  getAllVideos() {
+    return this.httpClient.get<Array<VideoDto>>('http://localhost:8080/api/videos');
+  }
   constructor(private httpClient: HttpClient) { }
 
   uploadVideo(fileEntry: File): Observable<UploadVideoResponse> {

@@ -1,1 +1,9 @@
-<p>featured works!</p>
+<div class="featured-container">
+  <h3 class="section-title">Featured Videos</h3>
+
+  <div class="video-grid">
+    <div class="video-grid-item" *ngFor="let featuredVideo of featuredVideos">
+      <app-video-card [video]="featuredVideo"></app-video-card>
+    </div>
+  </div>
+</div>
