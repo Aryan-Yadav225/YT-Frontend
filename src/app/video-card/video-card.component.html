@@ -1,0 +1,12 @@
+<div class="video-card" routerLink="/videoDetails/{{video.id}}">
+  <img class="video-thumbnail" [src]="video.thumbnailUrl" alt="Thumbnail">
+
+  <div class="video-card-header">
+    <div class="avatar"></div>
+    <div class="video-meta">
+      <h3 class="video-title">{{ video.title }}</h3>
+      <p class="video-subtitle channel">Programming Techie</p>
+      <p class="video-subtitle views">1M views</p>
+    </div>
+  </div>
+</div>

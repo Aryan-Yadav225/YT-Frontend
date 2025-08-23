@@ -109,7 +109,7 @@ export class SaveVideoDetailsComponent {
     this.videoService
       .uploadThumbnail(this.selectedFile, this.videoId)
       .subscribe((data) => {
-        console.log('ThumbnailURL', data);
+        this.thumbnailUrl = data;
         // show an upload success notification.
         this.matSnackBar.open('Thumbnail Upload Successful', 'OK');
       });
