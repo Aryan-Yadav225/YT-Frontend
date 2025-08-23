@@ -8,10 +8,11 @@ import { VideoDto } from './VideoDTO';
   providedIn: 'root',
 })
 export class VideoService {
-  getAllVideos() {
-    return this.httpClient.get<Array<VideoDto>>('http://localhost:8080/api/videos');
-  }
   constructor(private httpClient: HttpClient) { }
+
+  getAllVideos(): Observable<Array<VideoDto>> {
+    return this.httpClient.get<Array<VideoDto>>("http://localhost:8080/api/videos");
+  }
 
   uploadVideo(fileEntry: File): Observable<UploadVideoResponse> {
     // Create a FormData object to hold the file
@@ -41,5 +42,13 @@ export class VideoService {
     // HTTP PUT call to save video details
     return this.httpClient.put<VideoDto>('http://localhost:8080/api/videos', videoMetaData);
   }
-  
+
+  likeVideo(videoId: string): Observable<VideoDto> {
+    return this.httpClient.post<VideoDto>("http://localhost:8080/api/videos/" + videoId + "/like", null);
+  }
+
+  disLikeVideo(videoId: string): Observable<VideoDto> {
+    return this.httpClient.post<VideoDto>("http://localhost:8080/api/videos/" + videoId + "/dislike", null);
+  }
+
 }

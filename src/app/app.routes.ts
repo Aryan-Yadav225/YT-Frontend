@@ -57,4 +57,11 @@ export const routes: Routes = [
         (m) => m.VideoDetailComponent
       ),
   },
+  {
+    path: 'callback',
+    loadComponent: () =>
+      import('./callback/callback.component').then(
+        (m) => m.CallbackComponent
+      ),
+  },
 ];

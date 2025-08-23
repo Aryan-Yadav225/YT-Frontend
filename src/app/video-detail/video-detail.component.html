@@ -25,47 +25,38 @@
         </div>
       </div>
 
-      <!-- <mat-divider></mat-divider> -->
+      <mat-divider></mat-divider>
 
-      <!-- <mat-card-header class="channel-header">
-        <mat-card-title class="channel-title">Programming Techie</mat-card-title>
-        <mat-card-subtitle class="subtitles">4.2K Subscribers</mat-card-subtitle>
+      <mat-card-header class="channel-header">
+        <mat-card-title class="channel-title">Programming Techie </mat-card-title>
+        <mat-card-subtitle class="subtitles"> 4.2K Subscribers</mat-card-subtitle>
 
         <div class="subscribe-actions">
-          <button
-            *ngIf="showSubscribeButton"
-            class="subscribe-button"
-            mat-raised-button
-            color="warn"
-            (click)="subscribeToUser()"
-          >
+          <button *ngIf="showSubscribeButton" class="subscribe-button" mat-raised-button color="warn"
+            (click)="subscribeToUser()">
             SUBSCRIBE
           </button>
 
-          <button
-            *ngIf="showUnSubscribeButton"
-            class="subscribe-button-clicked"
-            mat-raised-button
-            color="accent"
-            (click)="unSubscribeToUser()"
-          >
+          <button *ngIf="showUnSubscribeButton" class="subscribe-button-clicked" mat-raised-button color="accent"
+            (click)="unSubscribeToUser()">
             UNSUBSCRIBE
           </button>
         </div>
-      </mat-card-header> -->
+      </mat-card-header>
 
       <p class="video-description">{{ videoDescription }}</p>
-<!-- 
+
       <mat-divider></mat-divider>
 
-      <mat-chip-list class="tags">
+      <!-- <mat-chip-list class="tags">
         <mat-chip>Spring Boot</mat-chip>
         <mat-chip>Angular</mat-chip>
-      </mat-chip-list>
+      </mat-chip-list> -->
 
       <mat-divider></mat-divider>
 
-      <app-comments *ngIf="videoAvailable" [videoId]="videoId"></app-comments> -->
+      <!-- <app-comments *ngIf="videoAvailable" [videoId]="videoId"></app-comments> -->
+
     </div>
   </section>
 
