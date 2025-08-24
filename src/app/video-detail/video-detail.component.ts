@@ -8,10 +8,11 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatCardModule } from '@angular/material/card';
 import { UserService } from '../user.service';
+import { CommentsComponent } from '../comments/comments.component';
 
 @Component({
   selector: 'app-video-detail',
-  imports: [VideoPlayerComponent, CommonModule, MatIconModule, MatChipsModule, MatDividerModule, MatCardModule, MatChipsModule],
+  imports: [VideoPlayerComponent, CommonModule, MatIconModule, MatChipsModule, MatDividerModule, MatCardModule, MatChipsModule, CommentsComponent],
   templateUrl: './video-detail.component.html',
   styleUrl: './video-detail.component.css'
 })
