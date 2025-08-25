@@ -62,6 +62,15 @@ export class UploadVideoComponent {
     console.log(event);
   }
 
+  getFileSize(item: NgxFileDropEntry): string {
+    if (item.fileEntry.isFile) {
+      const fileEntry = item.fileEntry as FileSystemFileEntry;
+      // Return placeholder since we can't get size synchronously
+      return 'Calculating...';
+    }
+    return '';
+  }
+
   uploadVideo() {
     //Upload the video to Backend
     if (this.fileEntry !== undefined) {

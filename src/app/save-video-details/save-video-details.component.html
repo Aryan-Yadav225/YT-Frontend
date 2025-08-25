@@ -1,110 +1,131 @@
-<div class="flex-container">
-  <!-- Left Sidebar -->
-  <div class="sidebar">Hi</div>
+<div class="video-details-container">
+  <div class="container">
+    <div class="details-grid">
+      <!-- Main Form Section -->
+      <div class="form-section card">
+        <div class="form-header">
+          <h2 class="form-title">Add Video Details</h2>
+          <p class="form-subtitle">Complete your video information</p>
+        </div>
 
-  <!-- Main Form Section -->
-  <div class="main-form">
-    <h2 class="form-title">Add Video Metadata</h2>
-
-    <form [formGroup]="saveVideoDetailsForm" class="form-fields">
-      <div>
-        <mat-form-field appearance="fill">
-          <mat-label>Title</mat-label>
-          <input matInput [formControl]="title" required />
-        </mat-form-field>
-      </div>
-
-      <div>
-        <mat-form-field appearance="fill">
-          <mat-label>Description</mat-label>
-          <input matInput [formControl]="description" required />
-        </mat-form-field>
-      </div>
-
-      <div>
-        <mat-form-field appearance="fill" class="full-width">
-          <mat-label>Video Status</mat-label>
-          <select [formControl]="videoStatus" matNativeControl required>
-            <option value="public">PUBLIC</option>
-            <option value="private">PRIVATE</option>
-          </select>
-        </mat-form-field>
-      </div>
-
-      <div>
-        <mat-form-field class="example-chip-list">
-          <mat-label>Tags</mat-label>
-          <mat-chip-grid #chipGrid aria-label="Enter tags">
-            <mat-chip-row
-              *ngFor="let tag of tags; trackBy: trackTag"
-              (removed)="remove(tag)"
-              [editable]="true"
-              [aria-description]="'press enter to edit ' + tag"
-            >
-              <button matChipEdit [attr.aria-label]="'edit ' + tag">
-                <mat-icon>edit</mat-icon>
-              </button>
-              {{ tag }}
-              <button matChipRemove [attr.aria-label]="'remove ' + tag">
-                <mat-icon>cancel</mat-icon>
-              </button>
-            </mat-chip-row>
-
-            <input
-              placeholder="New tag..."
-              [matChipInputFor]="chipGrid"
-              [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-              [matChipInputAddOnBlur]="addOnBlur"
-              (matChipInputTokenEnd)="add($event)"
-            />
-          </mat-chip-grid>
-        </mat-form-field>
-      </div>
-
-      <div>
-        <label for="inputGroupFile01"
-          >Upload Thumbnail:
-          <div class="custom-file">
-            <input
-              type="file"
-              class="custom-file-input"
-              id="inputGroupFile01"
-              aria-describedby="inputGroupFileAddon01"
-              (change)="onFileSelected($event)"
+        <form [formGroup]="saveVideoDetailsForm" class="form-fields">
+          <div class="form-group">
+            <label class="form-label">Video Title</label>
+            <input 
+              type="text" 
+              class="form-input" 
+              [formControl]="title" 
+              placeholder="Enter an engaging title for your video"
+              required 
             />
           </div>
-          <br />
-          <div *ngIf="selectedFile">
-            <div>
-              <p>Selected File: {{ selectedFileName }}</p>
-            </div>
-            <div>
-              <button
-                mat-raised-button
-                color="primary"
-                type="submit"
-                (click)="onUpload()"
-              >
-                Upload
-              </button>
+
+          <div class="form-group">
+            <label class="form-label">Description</label>
+            <textarea 
+              class="form-textarea" 
+              [formControl]="description" 
+              placeholder="Describe your video content..."
+              rows="4"
+              required
+            ></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Video Status</label>
+            <select class="form-select" [formControl]="videoStatus" required>
+              <option value="" disabled>Choose visibility</option>
+              <option value="public">🌍 Public - Anyone can view</option>
+              <option value="private">🔒 Private - Only you can view</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Tags</label>
+            <div class="tags-container">
+              <div class="tags-list">
+                <span 
+                  *ngFor="let tag of tags; trackBy: trackTag" 
+                  class="tag-chip"
+                >
+                  {{ tag }}
+                  <button 
+                    type="button" 
+                    class="tag-remove" 
+                    (click)="remove(tag)"
+                    aria-label="Remove tag"
+                  >
+                    ×
+                  </button>
+                </span>
+              </div>
+              <input
+                type="text"
+                class="tag-input"
+                placeholder="Add tags (press Enter)"
+                (keydown.enter)="addTag($event)"
+                #tagInput
+              />
             </div>
           </div>
-          <br />
-        </label>
+
+          <div class="form-group">
+            <label class="form-label">Thumbnail</label>
+            <div class="file-upload-area">
+              <input
+                type="file"
+                id="thumbnailInput"
+                class="file-input"
+                accept="image/*"
+                (change)="onFileSelected($event)"
+              />
+              <label for="thumbnailInput" class="file-upload-label">
+                <div class="upload-icon">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"/>
+                  </svg>
+                </div>
+                <div class="upload-text">
+                  <span class="upload-title">Choose thumbnail image</span>
+                  <span class="upload-subtitle">PNG, JPG up to 10MB</span>
+                </div>
+              </label>
+              
+              <div *ngIf="selectedFile" class="selected-file">
+                <div class="file-info">
+                  <span class="file-name">{{ selectedFileName }}</span>
+                  <button class="btn btn-secondary" (click)="onUpload()" type="button">
+                    Upload Thumbnail
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="button" class="btn btn-secondary">Cancel</button>
+            <button (click)="saveVideos()" class="btn btn-primary" type="submit">
+              Save Video Details
+            </button>
+          </div>
+        </form>
       </div>
 
-      <div>
-        <button (click)="saveVideos()" mat-raised-button color="primary" type="submit">Save</button>
+      <!-- Video Preview Section -->
+      <div class="preview-section card">
+        <div class="preview-header">
+          <h3 class="preview-title">Video Preview</h3>
+        </div>
+        <div class="video-container">
+          <app-video-player *ngIf="videoUrl" [videoURL]="videoUrl"></app-video-player>
+          <div *ngIf="!videoUrl" class="no-video">
+            <svg width="64" height="64" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M17,10.5V7A1,1 0 0,0 16,6H4A1,1 0 0,0 3,7V17A1,1 0 0,0 4,18H16A1,1 0 0,0 17,17V13.5L21,17.5V6.5L17,10.5Z"/>
+            </svg>
+            <p>No video selected</p>
+          </div>
+        </div>
       </div>
-    </form>
+    </div>
   </div>
-
-  <!-- Video Preview Section -->
-  <div class="video-preview">
-    <h3>Video Player</h3>
-    <app-video-player *ngIf="videoUrl" [videoURL]="videoUrl"></app-video-player>
-  </div>
-
-  <!-- Right Sidebar -->
-  <div class="sidebar">Hi</div>
 </div>

@@ -1,50 +1,200 @@
-.example-spacer {
-  flex: 1 1 auto;
+.modern-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
-.mat-toolbar {
-  background-color: #48c845;
-  color: rgb(107, 4, 112);
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 24px;
+  max-width: 1400px;
+  margin: 0 auto;
+  height: 64px;
 }
 
-/* Icon buttons styling */
-.example-icon {
-  font-size: 28px;
-  color: rgb(172, 44, 44);
-  transition: color 0.3s ease;
-  cursor: pointer;
-
-  padding: 8px;                 /* Padding around icons */
-  background-color: #48c845;    /* Green background matching toolbar */
-  border: 2px solid #48c845;    /* Green border */
-  border-radius: 6px;           /* Rounded corners */
-  margin: 4px;                  /* Margin around icons */
-  box-sizing: content-box;      /* Ensure padding/border don't reduce icon size */
+/* Logo Section */
+.logo-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
 }
 
-/* Hover state: icons turn black */
-.example-icon:hover {
-  color: black;
+.logo-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  color: white;
+  transition: all 0.3s ease;
 }
 
-/* Specific margin adjustment for favorite icon */
-.favorite-icon {
-  margin-right: 8px;
+.logo-icon:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.05);
 }
 
-/* Button adjustments to remove default styling */
-.mat-toolbar button.mat-icon-button,
-.mat-toolbar button.mat-icon-button:hover,
-.mat-toolbar button.mat-icon-button:focus {
-  background: transparent !important;
-  box-shadow: none !important;
-  outline: none !important;
+.logo-text {
+  font-size: 24px;
+  font-weight: 700;
+  color: white;
+  letter-spacing: -0.5px;
+}
+
+/* Search Section */
+.search-section {
+  flex: 1;
+  max-width: 600px;
+  margin: 0 40px;
+}
+
+.search-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 25px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.search-container:focus-within {
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
+}
+
+.search-input {
+  flex: 1;
+  padding: 12px 20px;
   border: none;
-  padding: 0;
-  margin: 0;
+  background: transparent;
+  color: white;
+  font-size: 16px;
+  outline: none;
 }
 
-/* Make sure mat-icon inside button aligns properly */
-.mat-toolbar button.mat-icon-button > .mat-icon {
-  display: inline-block;
+.search-input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.search-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.search-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Actions Section */
+.actions-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  border-radius: 12px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.action-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-2px);
+}
+
+.upload-btn {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+.upload-btn:hover {
+  transform: translateY(-2px) scale(1.05);
+}
+
+.profile-avatar {
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.login-btn {
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  border: none;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.login-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(79, 172, 254, 0.4);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .header-content {
+    padding: 12px 16px;
+  }
+  
+  .search-section {
+    margin: 0 20px;
+  }
+  
+  .logo-text {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .search-section {
+    display: none;
+  }
+  
+  .actions-section {
+    gap: 8px;
+  }
+}
+
+/* Add top margin to body content to account for fixed header */
+body {
+  padding-top: 64px;
 }
