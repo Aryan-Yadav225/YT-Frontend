@@ -1,9 +1,15 @@
 <div class="featured-container">
-  <h3 class="section-title">Featured Videos</h3>
-
-  <div class="video-grid">
-    <div class="video-grid-item" *ngFor="let featuredVideo of featuredVideos">
-      <app-video-card [video]="featuredVideo"></app-video-card>
+  <div *ngIf="!isAuthenticated" class="welcome-section">
+    <h1 class="welcome-title">Welcome to My Application</h1>
+    <div class="welcome-subtitle">Please Log In</div>
+  </div>
+  
+  <div *ngIf="isAuthenticated" class="video-content">
+    <h3 class="section-title">Featured Videos</h3>
+    <div class="video-grid">
+      <div class="video-grid-item" *ngFor="let featuredVideo of featuredVideos">
+        <app-video-card [video]="featuredVideo"></app-video-card>
+      </div>
     </div>
   </div>
 </div>

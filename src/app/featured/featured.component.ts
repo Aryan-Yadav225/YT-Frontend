@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { VideoCardComponent } from '../video-card/video-card.component';
 import { CommonModule } from '@angular/common';
 import { VideoDto } from '../VideoDTO';
 import { VideoService } from '../video.service';
+import { OidcSecurityService } from 'angular-auth-oidc-client';
 
 @Component({
   selector: 'app-featured',
@@ -11,12 +12,20 @@ import { VideoService } from '../video.service';
   styleUrl: './featured.component.css'
 })
 export class FeaturedComponent {
-
   featuredVideos: Array<VideoDto> = [];
+  isAuthenticated = false;
+  private readonly oidcSecurityService = inject(OidcSecurityService);
+
   constructor(private videoService: VideoService) {}
+  
   ngOnInit(): void {
-    this.videoService.getAllVideos().subscribe(response => {
-      this.featuredVideos = response;
-    })
+    this.oidcSecurityService.checkAuth().subscribe(({ isAuthenticated }) => {
+      this.isAuthenticated = isAuthenticated;
+      if (isAuthenticated) {
+        this.videoService.getAllVideos().subscribe(response => {
+          this.featuredVideos = response;
+        });
+      }
+    });
   }
 }

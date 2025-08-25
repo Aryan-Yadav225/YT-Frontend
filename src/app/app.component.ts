@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './header/header.component';
 import { LoginResponse, OidcSecurityService } from 'angular-auth-oidc-client';
 
@@ -11,16 +11,17 @@ import { LoginResponse, OidcSecurityService } from 'angular-auth-oidc-client';
 })
 export class AppComponent implements OnInit {
   private readonly oidcSecurityService = inject(OidcSecurityService);
+  private readonly router = inject(Router);
 
   ngOnInit() {
     this.oidcSecurityService.checkAuth().subscribe((loginResponse: LoginResponse) => {
       const { isAuthenticated, userData, accessToken, idToken, configId } = loginResponse;
       console.log('isAuthenticated:', isAuthenticated);
-      // console.log('userData:', userData); 
       console.log('accessToken:', accessToken);
-      // console.log('idToken:', idToken);
-      // console.log('configId:', configId);
-      /*...*/
+      
+      if (isAuthenticated && !this.router.url.includes('/callback')) {
+        this.router.navigateByUrl('/callback');
+      }
     });
   }
 }

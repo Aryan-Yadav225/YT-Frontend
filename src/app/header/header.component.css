@@ -1,50 +1,73 @@
+.header-toolbar {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  height: 70px;
+  padding: 0 24px;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+}
+
+.logo-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-icon {
+  font-size: 36px !important;
+  width: 36px;
+  height: 36px;
+  color: white;
+}
+
+.app-title {
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
 .example-spacer {
   flex: 1 1 auto;
 }
 
-.mat-toolbar {
-  background-color: #48c845;
-  color: rgb(107, 4, 112);
+.action-buttons {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-/* Icon buttons styling */
-.example-icon {
-  font-size: 28px;
-  color: rgb(172, 44, 44);
-  transition: color 0.3s ease;
-  cursor: pointer;
-
-  padding: 8px;                 /* Padding around icons */
-  background-color: #48c845;    /* Green background matching toolbar */
-  border: 2px solid #48c845;    /* Green border */
-  border-radius: 6px;           /* Rounded corners */
-  margin: 4px;                  /* Margin around icons */
-  box-sizing: content-box;      /* Ensure padding/border don't reduce icon size */
+.action-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
 }
 
-/* Hover state: icons turn black */
-.example-icon:hover {
-  color: black;
+.action-btn mat-icon {
+  font-size: 28px !important;
+  width: 28px;
+  height: 28px;
+  color: white;
 }
 
-/* Specific margin adjustment for favorite icon */
-.favorite-icon {
-  margin-right: 8px;
+.action-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
 }
 
-/* Button adjustments to remove default styling */
-.mat-toolbar button.mat-icon-button,
-.mat-toolbar button.mat-icon-button:hover,
-.mat-toolbar button.mat-icon-button:focus {
-  background: transparent !important;
-  box-shadow: none !important;
-  outline: none !important;
-  border: none;
-  padding: 0;
-  margin: 0;
+.login-btn {
+  background: white;
+  color: #667eea;
+  font-weight: 600;
+  padding: 8px 24px;
+  border-radius: 24px;
+  transition: all 0.3s ease;
 }
 
-/* Make sure mat-icon inside button aligns properly */
-.mat-toolbar button.mat-icon-button > .mat-icon {
-  display: inline-block;
+.login-btn:hover {
+  background: #f8f9ff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }

@@ -1,17 +1,18 @@
-<mat-toolbar>
-  <!-- <button matIconButton class="example-icon" aria-label="Example icon-button with menu icon">
-    <mat-icon>menu</mat-icon>
-  </button> -->
-  <mat-icon>ondemand_video</mat-icon>
-  <span>UTube</span>
+<mat-toolbar class="header-toolbar">
+  <div class="logo-section">
+    <mat-icon class="logo-icon">ondemand_video</mat-icon>
+    <span class="app-title">UTube</span>
+  </div>
   <span class="example-spacer"></span>
-  <button matIconButton class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-    <mat-icon>video_call</mat-icon>
-  </button>
-  <button *ngIf="isAuthenticated; else noAuth" matIconButton class="example-icon" aria-label="Example icon-button with share icon">
-    <mat-icon>account_circle</mat-icon>
-  </button>
-  <ng-template #noAuth>
-    <button matRaisedButton (click)="login()">LogIn</button>
-  </ng-template>
+  <div class="action-buttons">
+    <button matIconButton class="action-btn" aria-label="Upload video">
+      <mat-icon>video_call</mat-icon>
+    </button>
+    <button *ngIf="isAuthenticated; else noAuth" matIconButton class="action-btn" aria-label="User profile">
+      <mat-icon>account_circle</mat-icon>
+    </button>
+    <ng-template #noAuth>
+      <button mat-raised-button class="login-btn" (click)="login()">Login</button>
+    </ng-template>
+  </div>
 </mat-toolbar>
