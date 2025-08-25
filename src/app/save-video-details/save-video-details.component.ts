@@ -10,7 +10,7 @@ import {
 import { MatButtonModule } from '@angular/material/button';
 import { MatChipInputEvent, MatChipsModule } from '@angular/material/chips';
 import { MatOptionModule } from '@angular/material/core';
-import { MatFormFieldModule, MatLabel } from '@angular/material/form-field';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { VgCoreModule } from '@videogular/ngx-videogular/core';
@@ -31,7 +31,7 @@ import { VideoDto } from '../VideoDTO';
     MatSelectModule,
     MatButtonModule,
     MatOptionModule,
-    MatLabel,
+
     MatFormFieldModule,
     ReactiveFormsModule,
     MatIconModule,
@@ -134,6 +134,16 @@ export class SaveVideoDetailsComponent {
         duration: 3000,
       });
     });
+  }
+
+  addTag(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    const value = input.value.trim();
+    if (value) {
+      this.tags.push(value);
+      input.value = '';
+    }
+    event.preventDefault();
   }
 
   trackTag(index: number, item: string): string {

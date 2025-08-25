@@ -3,12 +3,12 @@ import { Component, inject } from '@angular/core';
 import { MatButton } from '@angular/material/button';
 import { MatCommonModule } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon';
-import { MatToolbar } from '@angular/material/toolbar';
+
 import { OidcSecurityService } from 'angular-auth-oidc-client';
 
 @Component({
   selector: 'app-header',
-  imports: [MatToolbar, MatIconModule, CommonModule],
+  imports: [MatIconModule, CommonModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
